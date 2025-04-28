@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from urllib import request
+from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect 
+from soko.models import User
 
 
 # Create your views here.
@@ -25,7 +28,7 @@ def register(request):
         return redirect(login)
     return render(request,"register.html")
 
-       
-            
+def dashboard(request):
+     return render(request,dashboard.html)
         
                 
