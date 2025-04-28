@@ -16,7 +16,7 @@ def login(request):
             return redirect(dashboard)
         else:
             return render(request,"login.html",{"error":"invalid credentials"})
-        return render(request,'login.html')
+    return render(request,'login.html')
             
 def register(request):
     if request.method =='POST':
