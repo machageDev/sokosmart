@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}  {# Required for using the 'static' tag #}
 
 {% block content %}
 <header class="site-header section-padding d-flex justify-content-center align-items-center">
@@ -26,7 +27,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="product-thumb">
                     <a href="{% url 'product_detail' 1 %}">
-                        <img src="{% static 'images/product/sample1.jpeg' %}" class="img-fluid product-image" alt="">
+                        <img src="{% static 'images/product/background.jpeg' %}" class="img-fluid product-image" alt="">
                     </a>
                     <div class="product-info d-flex">
                         <div>
