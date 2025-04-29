@@ -1,2 +1,74 @@
 {% extends 'base.html' %}
-{% load static %}
+
+{% block content %}
+<header class="site-header section-padding d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-12 text-center">
+                <h1 class="text-white">
+                    <span class="d-block text-primary">Welcome to</span>
+                    <span class="d-block text-dark">Little Fashion</span>
+                </h1>
+                <p class="text-white lead mt-3">Your one-stop shop for modern and stylish fashion items</p>
+                <a href="{% url 'shop' %}" class="btn custom-btn mt-4">Shop Now</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="featured-product section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2>Featured Products</h2>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="product-thumb">
+                    <a href="{% url 'product_detail' 1 %}">
+                        <img src="{% static 'images/product/sample1.jpeg' %}" class="img-fluid product-image" alt="">
+                    </a>
+                    <div class="product-info d-flex">
+                        <div>
+                            <h5 class="product-title mb-0">Stylish Jacket</h5>
+                            <p class="product-p">Warm and trendy</p>
+                        </div>
+                        <small class="product-price text-muted ms-auto">$49</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="product-thumb">
+                    <a href="{% url 'product_detail' 2 %}">
+                        <img src="{% static 'images/product/sample2.jpeg' %}" class="img-fluid product-image" alt="">
+                    </a>
+                    <div class="product-info d-flex">
+                        <div>
+                            <h5 class="product-title mb-0">Elegant Dress</h5>
+                            <p class="product-p">Perfect for any occasion</p>
+                        </div>
+                        <small class="product-price text-muted ms-auto">$69</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="product-thumb">
+                    <a href="{% url 'product_detail' 3 %}">
+                        <img src="{% static 'images/product/sample3.jpeg' %}" class="img-fluid product-image" alt="">
+                    </a>
+                    <div class="product-info d-flex">
+                        <div>
+                            <h5 class="product-title mb-0">Classic Shoes</h5>
+                            <p class="product-p">Comfort meets style</p>
+                        </div>
+                        <small class="product-price text-muted ms-auto">$59</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
