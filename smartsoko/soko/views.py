@@ -2,7 +2,7 @@ from django.shortcuts import render
 from urllib import request
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect 
-from soko.models import User
+from soko.models import Product, User
 
 
 # Create your views here.
@@ -31,4 +31,20 @@ def register(request):
 def dashboard(request):
      return render(request,dashboard.html)
         
-                
+from django.shortcuts import render, get_object_or_404
+from .models import Product
+
+def product(request):
+    new_arrivals = Product.objects.filter(category__name='New Arrivals')
+    popular_products = Product.objects.filter(category__name='Popular')
+
+    context = {
+        'new_arrivals': new_arrivals,
+        'popular_products': popular_products,
+    }
+    return render(request, 'products.html', context)
+
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    return render(request, 'product_detail.html', {'product': product})
+              
