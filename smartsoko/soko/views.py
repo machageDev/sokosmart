@@ -51,4 +51,5 @@ def product_detail(request, product_id):
 def about(request):
     return render(request,'about.html')
 
-              
+def FAQS(request):
+    return render(request, FAQS.html)              
