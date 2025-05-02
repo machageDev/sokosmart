@@ -88,7 +88,7 @@
                             <div class="col-lg-6 col-10">
                                 <h1 class="slick-title">New Design</h1>
                                 <p class="lead text-white mt-lg-3 mb-lg-5">Discover our latest fashion collections.</p>
-                                <a href="{% url 'products' %}" class="btn custom-btn">Explore products</a>
+                                <a href="{% url 'product' %}" class="btn custom-btn">Explore products</a>
                             </div>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
                                                 </div>
                                             </div>
                                             <div class="mt-2 mt-lg-auto">
-                                                <a href="{% url 'products' %}" class="custom-link mb-2">
+                                                <a href="{% url 'product' %}" class="custom-link mb-2">
                                                     Explore products
                                                     <i class="bi-arrow-right ms-2"></i>
                                                 </a>
@@ -216,7 +216,7 @@
                     <!-- Product 1 -->
                     <div class="col-lg-4 col-md-6 col-12 mb-4">
                         <div class="product-thumb">
-                            <a href="{% url 'product_detail' id=1 %}">
+                            <a href="{% url 'product_detail' %}">
                                 <img src="{% static 'images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg' %}" class="img-fluid product-image" alt="Tree pot">
                             </a>
                             <div class="product-top d-flex">
@@ -226,7 +226,7 @@
                             <div class="product-info d-flex">
                                 <div>
                                     <h5 class="product-title mb-0">
-                                        <a href="{% url 'product_detail' id=1 %}" class="product-title-link">Tree Pot</a>
+                                        <a href="{% url 'product_detail' %}" class="product-title-link">Tree Pot</a>
                                     </h5>
                                     <p class="product-p">Original package design</p>
                                 </div>
@@ -238,7 +238,7 @@
                     <!-- Product 2 -->
                     <div class="col-lg-4 col-md-6 col-12 mb-4">
                         <div class="product-thumb">
-                            <a href="{% url 'product_detail' id=2 %}">
+                            <a href="{% url 'product_detail' %}">
                                 <img src="{% static 'images/product/jordan-nix-CkCUvwMXAac-unsplash.jpeg' %}" class="img-fluid product-image" alt="Fashion set">
                             </a>
                             <div class="product-top d-flex">
@@ -248,7 +248,7 @@
                             <div class="product-info d-flex">
                                 <div>
                                     <h5 class="product-title mb-0">
-                                        <a href="{% url 'product_detail' id=2 %}" class="product-title-link">Fashion Set</a>
+                                        <a href="{% url 'product_detail' %}" class="product-title-link">Fashion Set</a>
                                     </h5>
                                     <p class="product-p">Complete outfit package</p>
                                 </div>
@@ -260,7 +260,7 @@
                     <!-- Product 3 -->
                     <div class="col-lg-4 col-md-6 col-12 mb-4">
                         <div class="product-thumb">
-                            <a href="{% url 'product_detail' id=3 %}">
+                            <a href="{% url 'product_detail' %}">
                                 <img src="{% static 'images/product/nature-zen-3Dn1BZZv3m8-unsplash.jpeg' %}" class="img-fluid product-image" alt="Juice drinks">
                             </a>
                             <div class="product-top d-flex">
@@ -269,7 +269,7 @@
                             <div class="product-info d-flex">
                                 <div>
                                     <h5 class="product-title mb-0">
-                                        <a href="{% url 'product_detail' id=3 %}" class="product-title-link">Juice Drinks</a>
+                                        <a href="{% url 'product_detail'  %}" class="product-title-link">Juice Drinks</a>
                                     </h5>
                                     <p class="product-p">Natural refreshments</p>
                                 </div>
@@ -279,7 +279,7 @@
                     </div>
 
                     <div class="col-12 text-center mt-4">
-                        <a href="{% url 'products' %}" class="btn btn-outline-primary">View All Products</a>
+                        <a href="{% url 'product' %}" class="btn btn-outline-primary">View All Products</a>
                     </div>
                 </div>
             </div>
@@ -293,15 +293,15 @@
                 <div class="col-lg-3 col-10 me-auto mb-4">
                     <h4 class="text-white mb-3"><a href="{% url 'home' %}" class="text-white text-decoration-none">SmartSoko Fashion</a></h4>
                     <p class="small text-muted">Premium fashion marketplace for everyone</p>
-                    <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright &copy; 2023 SmartSoko</p>
+                    <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright &copy; 2025  SmartSoko</p>
                 </div>
 
                 <div class="col-lg-5 col-8">
                     <h5 class="text-white mb-3">Sitemap</h5>
                     <ul class="list-unstyled d-flex flex-wrap footer-menu">
                         <li class="me-3 mb-2"><a href="{% url 'about' %}" class="text-white text-decoration-none">About</a></li>
-                        <li class="me-3 mb-2"><a href="{% url 'products' %}" class="text-white text-decoration-none">Products</a></li>
-                        <li class="me-3 mb-2"><a href="{% url 'faqs' %}" class="text-white text-decoration-none">FAQs</a></li>
+                        <li class="me-3 mb-2"><a href="{% url 'product' %}" class="text-white text-decoration-none">Products</a></li>
+                        <li class="me-3 mb-2"><a href="{% url 'FAQS' %}" class="text-white text-decoration-none">FAQs</a></li>
                         <li class="me-3 mb-2"><a href="{% url 'contact' %}" class="text-white text-decoration-none">Contact</a></li>
                     </ul>
                 </div>
