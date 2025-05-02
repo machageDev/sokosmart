@@ -3,6 +3,9 @@ from urllib import request
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect 
 from soko.models import Product, User
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
 
 
 # Create your views here.
@@ -55,4 +58,44 @@ def FAQS(request):
     return render(request, FAQS.html)   
 
 def home(request):
-    return render(request,'home.html')           
+    return render(request,'home.html')      
+
+
+
+def contact(request):
+    if request.method == 'POST':
+        # Get form data
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+
+        # Basic validation
+        if not all([name, email, message]):
+            messages.error(request, 'Please fill in all required fields.')
+            return render(request, 'contact.html')
+
+        # Send email (configure your email settings in settings.py)
+        try:
+            send_mail(
+                subject=f"New Contact Form Submission from {name}",
+                message=f"""
+                Name: {name}
+                Email: {email}
+                Phone: {phone}
+                
+                Message:
+                {message}
+                """,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.CONTACT_EMAIL],
+                fail_silently=False,
+            )
+            messages.success(request, 'Thank you for your message! We will get back to you soon.')
+            return redirect('contact')  # Redirect to clear the form
+        
+        except Exception as e:
+            messages.error(request, 'There was an error sending your message. Please try again later.')
+            print(f"Error sending email: {e}")  # For debugging
+
+    return render(request, 'contact.html')  
