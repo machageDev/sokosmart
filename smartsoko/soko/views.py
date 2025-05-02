@@ -99,3 +99,82 @@ def contact(request):
             print(f"Error sending email: {e}")  # For debugging
 
     return render(request, 'contact.html')  
+
+
+def cart(request):
+    """Display the shopping cart"""
+    cart = request.session.get('cart', {})
+    
+    # Prepare cart items with product details and totals
+    cart_items = []
+    total_price = 0
+    total_items = 0
+    
+    for product_id, item in cart.items():
+        product = get_object_or_404(Product, id=product_id)
+        item_total = product.price * item['quantity']
+        cart_items.append({
+            'product': product,
+            'quantity': item['quantity'],
+            'total': item_total
+        })
+        total_price += item_total
+        total_items += item['quantity']
+    
+    context = {
+        'cart_items': cart_items,
+        'total_price': total_price,
+        'total_items': total_items
+    }
+    return render(request, 'cart/cart.html', context)
+
+def add_to_cart(request, product_id):
+    """Add a product to the cart"""
+    product = get_object_or_404(Product, id=product_id)
+    cart = request.session.get('cart', {})
+    
+    # Get quantity from POST data (default to 1 if not provided)
+    quantity = int(request.POST.get('quantity', 1))
+    
+    if product_id in cart:
+        # Update existing item
+        cart[product_id]['quantity'] += quantity
+    else:
+        # Add new item
+        cart[product_id] = {
+            'quantity': quantity,
+            'price': str(product.price)  # Store as string to avoid JSON serialization issues
+        }
+    
+    request.session['cart'] = cart
+    messages.success(request, f"{product.name} added to your cart")
+    return redirect('cart:cart_view')
+
+def remove_from_cart(request, product_id):
+    """Remove a product from the cart"""
+    product = get_object_or_404(Product, id=product_id)
+    cart = request.session.get('cart', {})
+    
+    if product_id in cart:
+        del cart[product_id]
+        request.session['cart'] = cart
+        messages.success(request, f"{product.name} removed from your cart")
+    
+    return redirect('cart:cart_view')
+
+def update_cart(request, product_id):
+    """Update product quantity in the cart"""
+    if request.method == 'POST':
+        product = get_object_or_404(Product, id=product_id)
+        cart = request.session.get('cart', {})
+        quantity = int(request.POST.get('quantity', 1))
+        
+        if quantity > 0:
+            cart[product_id]['quantity'] = quantity
+            request.session['cart'] = cart
+            messages.success(request, f"{product.name} quantity updated")
+        else:
+            # If quantity is 0 or less, remove the item
+            return remove_from_cart(request, product_id)
+    
+    return redirect('cart:cart_view')
