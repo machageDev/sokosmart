@@ -55,7 +55,7 @@ def about(request):
     return render(request,'about.html')
 
 def FAQS(request):
-    return render(request, FAQS.html)   
+    return render(request, 'FAQS.html')   
 
 def home(request):
     return render(request,'home.html')      
