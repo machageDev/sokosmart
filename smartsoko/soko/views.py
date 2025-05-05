@@ -6,6 +6,8 @@ from soko.models import Product, User
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.shortcuts import render, get_object_or_404
+
 
 
 # Create your views here.
@@ -34,8 +36,7 @@ def register(request):
 def dashboard(request):
      return render(request,dashboard.html)
         
-from django.shortcuts import render, get_object_or_404
-from .models import Product
+
 
 def product(request):
     new_arrivals = Product.objects.filter(category__name='New Arrivals')
