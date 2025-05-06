@@ -47,11 +47,11 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'product' %}">All Products</a></li>
-                            <li><a class="dropdown-item" href="{% url 'product_details' product_id=1 %}">Product 1</a></li>
-                            <li><a class="dropdown-item" href="{% url 'product_details' product_id=2 %}">Product 2</a></li>
-                            <!-- Add more product links as needed -->
+                            {% for product in products %}
+                                <li><a class="dropdown-item" href="{% url 'product_detail' product.id %}">{{ product.name }}</a></li>
+                            {% endfor %}
                         </ul>
-                    </li>
+                    </li>              
                     
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'FAQS' %}">FAQs</a>
