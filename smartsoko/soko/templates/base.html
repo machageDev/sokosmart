@@ -41,9 +41,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'product' %}">Products</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'product' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'product' %}">All Products</a></li>
+                            <li><a class="dropdown-item" href="{% url 'product_details' product_id=1 %}">Product 1</a></li>
+                            <li><a class="dropdown-item" href="{% url 'product_details' product_id=2 %}">Product 2</a></li>
+                            <!-- Add more product links as needed -->
+                        </ul>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'FAQS' %}">FAQs</a>
                     </li>
