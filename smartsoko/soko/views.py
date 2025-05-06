@@ -39,8 +39,8 @@ def dashboard(request):
 
 
 def product(request):
-    new_arrivals = Product.objects.filter(category__name='New Arrivals')
-    popular_products = Product.objects.filter(category__name='Popular')
+    new_arrivals = Product.objects.filter(Category__name='New Arrivals')
+    popular_products = Product.objects.filter(Category__name='Popular')
 
     context = {
         'new_arrivals': new_arrivals,
