@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
@@ -44,7 +45,7 @@ def dashboard(request):
      return render(request,dashboard.html)
         
 
-
+@login_required
 def product(request):
     new_arrivals = Product.objects.filter(Category__name='New Arrivals')
     popular_products = Product.objects.filter(Category__name='Popular')
@@ -55,6 +56,7 @@ def product(request):
     }
     return render(request, 'products.html', context)
 
+@login_required
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     return render(request, 'product_detail.html', {'product': product})
@@ -108,7 +110,7 @@ def contact(request):
 
     return render(request, 'contact.html')  
 
-
+@login_required
 def cart(request):
     """Display the shopping cart"""
     cart = request.session.get('cart', {})
