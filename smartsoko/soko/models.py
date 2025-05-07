@@ -14,7 +14,7 @@ class User(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=245)
     description = models.TextField(blank=True, null=True)
-    def __str(self):
+    def __str__(self):
         return self.name
    
     
