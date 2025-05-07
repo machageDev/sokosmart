@@ -2,13 +2,20 @@ from django.shortcuts import render
 from urllib import request
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect 
+from smartsoko.soko.serializers import UserSerializer
 from soko.models import Product, User
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
 
-
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
+from rest_framework.validators import ValidationError
 
 # Create your views here.
 def login(request):
@@ -179,3 +186,14 @@ def update_cart(request, product_id):
             return remove_from_cart(request, product_id)
     
     return redirect('cart:cart_view')
+
+
+#api section by only and one giant MACHAGE
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def apiregister(request):
+    username = request.data.get('username')
+    email = request.data.get('email')
+    password = request.data.get('password')
+    
+    
