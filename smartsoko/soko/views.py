@@ -213,4 +213,24 @@ def apiregister(request):
     user = User.objects.create_user(username=username, email=email, password=password)
     return Response({'message': 'User registered successfully'}, status=status.HTTP_201_CREATED)
     
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def apilogin(request):
+    email = request.data.get('email')
+    password = request.data.get('password')
+
+    if not email or not password:
+        return Response({'error': 'Email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+    user = authenticate(username=user.username, password=password)
+
+    if user is not None:
+        return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
+    else:
+        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
     
