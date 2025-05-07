@@ -12,6 +12,12 @@ urlpatterns = [
     path('about',views.about, name='about'),
     path('faqs',views.FAQS, name='FAQS'),
     path('contact',views.contact,name='contact'),
-    path('cart', views.cart, name='cart')
+    path('cart', views.cart, name='cart'),
+    
+    
+    #api URLS
+    path('apiregister',views.apiregister,name='apiregister'),
+    path('apilogin',views.apilogin,name='api_login')
+    
     
 ]
