@@ -238,6 +238,7 @@ def apilogin(request):
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
+
 @api_view(['GET'])
 def apiproduct_detail(request):
     try:
@@ -245,13 +246,13 @@ def apiproduct_detail(request):
     except Product.DoesNotExist:
         return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
 
-    serializer = ProductSerializers(product)
+    serializer = ProductSerializer(product)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def apirelated_products(request):
-    products = Product.objects.all()[:3] 
+    products = Product.objects.all()[:3]  
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 
@@ -264,8 +265,23 @@ def apiadd_to_cart(request):
     if not product_id:
         return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
 
-    cart = request.session.get("cart", {})
-    cart[product_id] = cart.get(product_id, 0) + quantity
-    request.session["cart"] = cart
+    try:
+        Product.objects.get(id=product_id)  
+    except Product.DoesNotExist:
+        return Response({"error": "Product not found"}, status=status.HTTP_404_NOT_FOUND)
 
-    return Response({"message": "Product added to cart"}, status=status.HTTP_200_OK)    
+    
+    cart = request.session.get("cart", {})
+
+    
+    if str(product_id) in cart:
+        cart[str(product_id)] += quantity
+    else:
+        cart[str(product_id)] = quantity
+
+    request.session["cart"] = cart 
+
+    return Response({
+        "message": "Product added to cart",
+        "cart": cart
+    }, status=status.HTTP_200_OK)

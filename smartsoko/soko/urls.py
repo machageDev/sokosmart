@@ -18,8 +18,8 @@ urlpatterns = [
     #api URLS
     path('apiregister',views.apiregister,name='apiregister'),
     path('apilogin',views.apilogin,name='api_login'),
-    path('api/product/<int:pk>', views.product_detail_api, name='product-detail'),
-    path('api/product/related', views.related_products_api, name='related-products'),
-    path('api/cart/add', views.add_to_cart_api, name='add-to-cart')
+    path('api/product/<int:pk>', views.apiproduct_detail, name='product-detail'),
+    path('api/product/related', views.apirelated_products, name='related-products'),
+    path('api/cart/add', views.apiadd_to_cart, name='add-to-cart')
     
 ]
