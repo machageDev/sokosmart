@@ -285,3 +285,9 @@ def apiadd_to_cart(request):
         "message": "Product added to cart",
         "cart": cart
     }, status=status.HTTP_200_OK)
+    
+@api_view(['GET'])
+def product_list_api(request):
+    products = Product.objects.all()
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)

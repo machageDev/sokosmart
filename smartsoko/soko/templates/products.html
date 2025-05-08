@@ -195,5 +195,48 @@
 {% endblock %}
 
 {% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('/api/product/related/')
+            .then(response => response.json())
+            .then(products => {
+                const container = document.getElementById('product-list');
+                container.innerHTML = ''; // Clear loading/spinner
+    
+                products.forEach(product => {
+                    const productCard = `
+                        <div class="col-lg-4 col-12 mb-3">
+                            <div class="product-thumb">
+                                <a href="/product/${product.id}/">
+                                    <img src="${product.image}" class="img-fluid product-image" alt="${product.name}">
+                                </a>
+    
+                                <div class="product-top d-flex">
+                                    <span class="product-alert me-auto">New Arrival</span>
+                                    <a href="#" class="bi-heart-fill product-icon"></a>
+                                </div>
+    
+                                <div class="product-info d-flex">
+                                    <div>
+                                        <h5 class="product-title mb-0">
+                                            <a href="/product/${product.id}/" class="product-title-link">${product.name}</a>
+                                        </h5>
+                                        <p class="product-p">${product.description}</p>
+                                    </div>
+                                    <small class="product-price text-muted ms-auto">$${product.price}</small>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', productCard);
+                });
+            })
+            .catch(error => {
+                console.error("Error loading products:", error);
+                document.getElementById('product-list').innerHTML = '<p>Failed to load products.</p>';
+            });
+    });
+    </script>
+    
 <script src="js/slick.min.js"></script>
 {% endblock %}
