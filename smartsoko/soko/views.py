@@ -2,7 +2,7 @@ from django.shortcuts import render
 from urllib import request
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect 
-from smartsoko.soko.serializers import UserSerializer
+from smartsoko.soko.serializers import ProductSerializers, UserSerializer
 from soko.models import Product, User
 from django.core.mail import send_mail
 from django.conf import settings
@@ -17,6 +17,7 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.validators import ValidationError
+from .serializers import ProductSerializer
 
 # Create your views here.
 def login(request):
@@ -235,4 +236,36 @@ def apilogin(request):
         return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
     else:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-    
+
+
+@api_view(['GET'])
+def product_detail_api(request, pk):
+    try:
+        product = Product.objects.get(pk=pk)
+    except Product.DoesNotExist:
+        return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ProductSerializers(product)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def related_products_api(request):
+    products = Product.objects.all()[:3]  # You can apply filters here
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def add_to_cart_api(request):
+    product_id = request.data.get("product_id")
+    quantity = int(request.data.get("quantity", 1))
+
+    if not product_id:
+        return Response({"error": "Product ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+    cart = request.session.get("cart", {})
+    cart[product_id] = cart.get(product_id, 0) + quantity
+    request.session["cart"] = cart
+
+    return Response({"message": "Product added to cart"}, status=status.HTTP_200_OK)    
