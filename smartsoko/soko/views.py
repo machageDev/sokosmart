@@ -239,9 +239,9 @@ def apilogin(request):
 
 
 @api_view(['GET'])
-def product_detail_api(request, pk):
+def apiproduct_detail(request):
     try:
-        product = Product.objects.get(pk=pk)
+        product = Product.objects.get()
     except Product.DoesNotExist:
         return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -250,14 +250,14 @@ def product_detail_api(request, pk):
 
 
 @api_view(['GET'])
-def related_products_api(request):
-    products = Product.objects.all()[:3]  # You can apply filters here
+def apirelated_products(request):
+    products = Product.objects.all()[:3] 
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 
 
 @api_view(['POST'])
-def add_to_cart_api(request):
+def apiadd_to_cart(request):
     product_id = request.data.get("product_id")
     quantity = int(request.data.get("quantity", 1))
 
