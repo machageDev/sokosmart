@@ -2,7 +2,6 @@ from django.shortcuts import render
 from urllib import request
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect 
-from smartsoko.soko.serializers import ProductSerializers, UserSerializer
 from soko.models import Product, User
 from django.core.mail import send_mail
 from django.conf import settings
@@ -17,7 +16,9 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.validators import ValidationError
-from .serializers import ProductSerializer
+from .serializers import ProductSerializers
+
+
 
 # Create your views here.
 def login(request):
@@ -246,14 +247,14 @@ def apiproduct_detail(request):
     except Product.DoesNotExist:
         return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
 
-    serializer = ProductSerializer(product)
+    serializer = ProductSerializers(product)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def apirelated_products(request):
     products = Product.objects.all()[:3]  
-    serializer = ProductSerializer(products, many=True)
+    serializer = ProductSerializers(products, many=True)
     return Response(serializer.data)
 
 
@@ -289,5 +290,5 @@ def apiadd_to_cart(request):
 @api_view(['GET'])
 def apiproduct(request):
     products = Product.objects.all()
-    serializer = ProductSerializer(products, many=True)
+    serializer = ProductSerializers(products, many=True)
     return Response(serializer.data)
