@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header class="site-header section-padding d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-12">
+                <h1>
+                    <span class="d-block text-primary">Your favorite questions</span>
+                    <span class="d-block text-dark">and our answers to them</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="faq section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <h2>General Info.</h2>
+                <div class="accordion" id="accordionGeneral">
+                    <!-- FAQ Item 1 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralOne" aria-expanded="true" aria-controls="accordionGeneralOne">
+                                What is SmartSoko?
+                            </button>
+                        </h2>
+                        <div id="accordionGeneralOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionGeneral">
+                            <div class="accordion-body">
+                                <p class="large-paragraph"><strong>SmartSoko</strong> is an innovative e-commerce platform that connects buyers and sellers in a smart and efficient marketplace. It’s designed to make online shopping fast, convenient, and secure.</p>
+                                <p class="large-paragraph">You can browse a wide variety of categories, find the best deals, and enjoy doorstep delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralTwo" aria-expanded="false" aria-controls="accordionGeneralTwo">
+                                How do I create an account on SmartSoko?
+                            </button>
+                        </h2>
+                        <div id="accordionGeneralTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionGeneral">
+                            <div class="accordion-body">
+                                <p class="large-paragraph">Click on the “Sign Up” button at the top of the page, fill in your details, and verify your email to start shopping or selling on SmartSoko.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralThree" aria-expanded="false" aria-controls="accordionGeneralThree">
+                                Is SmartSoko free to use?
+                            </button>
+                        </h2>
+                        <div id="accordionGeneralThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionGeneral">
+                            <div class="accordion-body">
+                                <p class="large-paragraph">Yes, creating an account and browsing products is completely free. Sellers may be charged a small fee depending on their sales or subscription plan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="mt-5">About <span>our products</span></h2>
+
+                <div class="accordion" id="accordionProduct">
+                    <!-- Product FAQ 1 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionProductOne" aria-expanded="true" aria-controls="accordionProductOne">
+                                What kind of products can I find on SmartSoko?
+                            </button>
+                        </h2>
+                        <div id="accordionProductOne" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionProduct">
+                            <div class="accordion-body">
+                                <p class="large-paragraph">SmartSoko offers a variety of products including fashion, electronics, home goods, beauty products, groceries, and more—all from trusted vendors.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product FAQ 2 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionProductTwo" aria-expanded="false" aria-controls="accordionProductTwo">
+                                How do I order and track my delivery?
+                            </button>
+                        </h2>
+                        <div id="accordionProductTwo" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionProduct">
+                            <div class="accordion-body">
+                                <p class="large-paragraph">Once you place an order, you’ll receive an order confirmation email and can track your delivery in your SmartSoko dashboard under "My Orders".</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

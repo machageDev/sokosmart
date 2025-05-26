@@ -1,0 +1,343 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SmartSoko Fashion - Premium fashion marketplace">
+    <meta name="author" content="SmartSoko">
+
+    <title>SmartSoko Fashion | Premium Clothing & Accessories</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tooplate-little-fashion.css' %}">
+</head>
+
+<body>
+    <section class="preloader">
+        <div class="spinner">
+            <span class="sk-inner-circle"></span>
+        </div>
+    </section>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <strong><span>SmartSoko</span> Fashion</strong>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            ```
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'product' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'product' %}">All Products</a></li>
+                            {% for product in products %}
+                                <li><a class="dropdown-item" href="{% url 'product_detail' product.id %}">{{ product.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>              
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'FAQS' %}">FAQs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                </ul>
+    ```
+    
+
+                <div class="d-flex">
+                    <a href="{% url 'login' %}" class="bi-person custom-icon me-3" aria-label="Account"></a>
+                    <a href="{% url 'cart' %}" class="bi-bag custom-icon" aria-label="Shopping Cart"></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Slider -->
+        <section class="slick-slideshow">
+            <div class="slick-custom">
+                <img src="{% static 'images/slideshow/medium-shot-business-women-high-five.jpeg' %}" class="img-fluid" alt="Business women celebrating">
+
+                <div class="slick-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 col-10">
+                                <h1 class="slick-title">Cool Fashion</h1>
+                                <p class="lead text-white mt-lg-3 mb-lg-5">Smart shopping, smarter selling – only at SmartSoko.</p>
+                                <a href="{% url 'about' %}" class="btn custom-btn">Learn more about us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slick-custom">
+                <img src="{% static 'images/slideshow/team-meeting-renewable-energy-project.jpeg' %}" class="img-fluid" alt="Team meeting">
+
+                <div class="slick-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 col-10">
+                                <h1 class="slick-title">New Design</h1>
+                                <p class="lead text-white mt-lg-3 mb-lg-5">Discover our latest fashion collections.</p>
+                                <a href="{% url 'product' %}" class="btn custom-btn">Explore products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 class="mb-5">Get started with <span>SmartSoko</span> Fashion</h2>
+                    </div>
+
+                    <div class="col-lg-2 col-12 mt-auto mb-auto">
+                        <ul class="nav nav-pills mb-5 mx-auto justify-content-center flex-lg-column" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Introduction</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-youtube-tab" data-bs-toggle="pill" data-bs-target="#pills-youtube" type="button" role="tab" aria-controls="pills-youtube" aria-selected="false">How we work?</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-skill-tab" data-bs-toggle="pill" data-bs-target="#pills-skill" type="button" role="tab" aria-controls="pills-skill" aria-selected="false">Capabilities</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-10 col-12">
+                        <div class="tab-content mt-2" id="pills-tabContent">
+                            <!-- Tab 1 Content -->
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                <div class="row">
+                                    <div class="col-lg-7 col-12">
+                                        <img src="{% static 'images/pim-chu-z6NZ76_UTDI-unsplash.jpeg' %}" class="img-fluid" alt="Fashion design">
+                                    </div>
+                                    <div class="col-lg-5 col-12">
+                                        <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                            <h4 class="mb-3">Good <span>Design</span> Ideas for <span>your</span> fashion</h4>
+                                            <p>SmartSoko Fashion comes with premium quality clothing and accessories for all occasions.</p>
+                                            <div class="mt-2 mt-lg-auto">
+                                                <a href="{% url 'about' %}" class="custom-link mb-2">
+                                                    Learn more about us
+                                                    <i class="bi-arrow-right ms-2"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab 2 Content -->
+                            <div class="tab-pane fade" id="pills-youtube" role="tabpanel" aria-labelledby="pills-youtube-tab">
+                                <div class="row">
+                                    <div class="col-lg-7 col-12">
+                                        <div class="ratio ratio-16x9">
+                                            <iframe src="https://www.youtube.com/embed/example" title="How we work" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-12">
+                                        <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                            <h4 class="mb-3">Our Process</h4>
+                                            <p>We carefully curate all our fashion items to ensure quality and style.</p>
+                                            <div class="mt-2 mt-lg-auto">
+                                                <a href="{% url 'contact' %}" class="custom-link mb-2">
+                                                    Work with us
+                                                    <i class="bi-arrow-right ms-2"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab 3 Content -->
+                            <div class="tab-pane fade" id="pills-skill" role="tabpanel" aria-labelledby="pills-skill-tab">
+                                <div class="row">
+                                    <div class="col-lg-7 col-12">
+                                        <img src="{% static 'images/cody-lannom-G95AReIh_Ko-unsplash.jpeg' %}" class="img-fluid" alt="Fashion studio">
+                                    </div>
+                                    <div class="col-lg-5 col-12">
+                                        <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
+                                            <h4 class="mb-3">Our Expertise</h4>
+                                            <div class="skill-thumb mt-3">
+                                                <strong>Fashion Design</strong>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 90%"></div>
+                                                </div>
+
+                                                <strong>Quality Materials</strong>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 85%"></div>
+                                                </div>
+
+                                                <strong>Customer Service</strong>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 95%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2 mt-lg-auto">
+                                                <a href="{% url 'product' %}" class="custom-link mb-2">
+                                                    Explore products
+                                                    <i class="bi-arrow-right ms-2"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="featured-product section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 class="mb-5">Featured Products</h2>
+                    </div>
+
+                    <!-- Product 1 -->
+                    <div class="col-lg-4 col-md-6 col-12 mb-4">
+                        <div class="product-thumb">
+                            <a href="{% url 'product_detail' %}">
+                                <img src="{% static 'images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg' %}" class="img-fluid product-image" alt="Tree pot">
+                            </a>
+                            <div class="product-top d-flex">
+                                <span class="product-alert me-auto">New Arrival</span>
+                                <a href="#" class="bi-heart-fill product-icon" aria-label="Add to wishlist"></a>
+                            </div>
+                            <div class="product-info d-flex">
+                                <div>
+                                    <h5 class="product-title mb-0">
+                                        <a href="{% url 'product_detail' %}" class="product-title-link">Tree Pot</a>
+                                    </h5>
+                                    <p class="product-p">Original package design</p>
+                                </div>
+                                <small class="product-price text-muted ms-auto">$25</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="col-lg-4 col-md-6 col-12 mb-4">
+                        <div class="product-thumb">
+                            <a href="{% url 'product_detail' %}">
+                                <img src="{% static 'images/product/jordan-nix-CkCUvwMXAac-unsplash.jpeg' %}" class="img-fluid product-image" alt="Fashion set">
+                            </a>
+                            <div class="product-top d-flex">
+                                <span class="product-alert">Low Price</span>
+                                <a href="#" class="bi-heart-fill product-icon ms-auto" aria-label="Add to wishlist"></a>
+                            </div>
+                            <div class="product-info d-flex">
+                                <div>
+                                    <h5 class="product-title mb-0">
+                                        <a href="{% url 'product_detail' %}" class="product-title-link">Fashion Set</a>
+                                    </h5>
+                                    <p class="product-p">Complete outfit package</p>
+                                </div>
+                                <small class="product-price text-muted ms-auto">$35</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="col-lg-4 col-md-6 col-12 mb-4">
+                        <div class="product-thumb">
+                            <a href="{% url 'product_detail' %}">
+                                <img src="{% static 'images/product/nature-zen-3Dn1BZZv3m8-unsplash.jpeg' %}" class="img-fluid product-image" alt="Juice drinks">
+                            </a>
+                            <div class="product-top d-flex">
+                                <a href="#" class="bi-heart-fill product-icon ms-auto" aria-label="Add to wishlist"></a>
+                            </div>
+                            <div class="product-info d-flex">
+                                <div>
+                                    <h5 class="product-title mb-0">
+                                        <a href="{% url 'product_detail'  %}" class="product-title-link">Juice Drinks</a>
+                                    </h5>
+                                    <p class="product-p">Natural refreshments</p>
+                                </div>
+                                <small class="product-price text-muted ms-auto">$45</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 text-center mt-4">
+                        <a href="{% url 'product' %}" class="btn btn-outline-primary">View All Products</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-10 me-auto mb-4">
+                    <h4 class="text-white mb-3"><a href="{% url 'home' %}" class="text-white text-decoration-none">SmartSoko Fashion</a></h4>
+                    <p class="small text-muted">Premium fashion marketplace for everyone</p>
+                    <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright &copy; 2025  SmartSoko</p>
+                </div>
+
+                <div class="col-lg-5 col-8">
+                    <h5 class="text-white mb-3">Sitemap</h5>
+                    <ul class="list-unstyled d-flex flex-wrap footer-menu">
+                        <li class="me-3 mb-2"><a href="{% url 'about' %}" class="text-white text-decoration-none">About</a></li>
+                        <li class="me-3 mb-2"><a href="{% url 'product' %}" class="text-white text-decoration-none">Products</a></li>
+                        <li class="me-3 mb-2"><a href="{% url 'FAQS' %}" class="text-white text-decoration-none">FAQs</a></li>
+                        <li class="me-3 mb-2"><a href="{% url 'contact' %}" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-4">
+                    <h5 class="text-white mb-3">Social</h5>
+                    <ul class="list-inline">
+                        <li class="list-inline-item me-3"><a href="#" class="text-white" aria-label="WhatsApp"><i class="bi-whatsapp"></i></a></li>
+                        <li class="list-inline-item me-3"><a href="#" class="text-white" aria-label="Instagram"><i class="bi-instagram"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="text-white" aria-label="Twitter"><i class="bi-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
