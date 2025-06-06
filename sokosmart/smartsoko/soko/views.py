@@ -47,7 +47,6 @@ def dashboard(request):
      return render(request,dashboard.html)
         
 
-@login_required
 def product(request):
     new_arrivals = Product.objects.filter(Category__name='New Arrivals')
     popular_products = Product.objects.filter(Category__name='Popular')
@@ -58,7 +57,6 @@ def product(request):
     }
     return render(request, 'products.html', context)
 
-@login_required
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     return render(request, 'product_detail.html', {'product': product})
