@@ -110,6 +110,16 @@ def contact(request):
 
     return render(request, 'contact.html')  
 
+
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'forgot_password.html'  # Your forgot password form template
+    email_template_name = 'password_reset_email.html'  # Email template for reset link
+    subject_template_name = 'password_reset_subject.txt'  # Email subject template
+    success_url = reverse_lazy('password_reset_done')  # Redirect after form submitted
+
 @login_required
 def cart(request):
     """Display the shopping cart"""
